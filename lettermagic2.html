@@ -1,0 +1,134 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Math Magic</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    displayAlign: "left",
+    displayIndent: "2em" 
+  });
+  MathJax.Hub.Queue(function () {
+    document.getElementById("start").disabled = false;
+    document.getElementById("stepyes").disabled = true;
+    document.getElementById("stepno").disabled = true;
+    document.getElementById("reset").disabled = true;
+  });
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full"></script>
+
+<script type="text/javascript">
+(function () {
+  var n = 1;
+  var r = 64;
+  window.Start = function () {
+    document.getElementById("stepyes").disabled = false;
+    document.getElementById("stepno").disabled = false;
+    document.getElementById("reset").disabled = false;
+    document.getElementById("Step1").style.visibility = "visible";
+    document.getElementById("start").disabled = true;
+  }
+  window.ResetSteps = function () {
+    document.getElementById("start").disabled = false;
+    document.getElementById("stepyes").disabled = true;
+    document.getElementById("stepno").disabled = true;
+    document.getElementById("reset").disabled = true;
+    document.getElementById("result").innerHTML="I will show the letter in your mind here after 5 questions.";
+    document.getElementById("result2").innerHTML=" ";
+    var i = 1, step; n = 1; r = 64;
+    while (step = document.getElementById("Step"+i)) {step.style.visibility = "hidden"; i++}
+  }
+  window.StepYes = function () {
+    r = r + Math.pow(2,n-1);
+    document.getElementById("Step"+n).style.visibility = "hidden"; n++;
+    if (!document.getElementById("Step"+n)) 
+    {document.getElementById("stepyes").disabled = true;
+    document.getElementById("stepno").disabled = true;
+    document.getElementById("reset").disabled = false;
+    if (r>64 && r<91){
+    document.getElementById("result").innerHTML="You picked <b> &#" + r + "; </b> .";
+    }
+    else{
+       document.getElementById("result").innerHTML="<b>You did <b>not</b> pick a letter! "; 
+    }
+    document.getElementById("result2").innerHTML="Click the <b>restart</b> button to play again. "; 
+    }
+    document.getElementById("Step"+n).style.visibility = "visible";
+  }
+  window.StepNo = function () {
+    document.getElementById("Step"+n).style.visibility = "hidden"; n++;
+    if (!document.getElementById("Step"+n)) 
+    {document.getElementById("stepyes").disabled = true;
+    document.getElementById("stepno").disabled = true;
+    document.getElementById("reset").disabled = false;
+    if (r>64 && r<91){
+    document.getElementById("result").innerHTML="You picked <b> &#" + r + "; </b> .";
+    }
+    else{ 
+    document.getElementById("result").innerHTML="You did <b>not</b> pick a letter! ";
+    }
+    document.getElementById("result2").innerHTML="Click the <b>restart</b> button to play again. ";
+    }
+    document.getElementById("Step"+n).style.visibility = "visible";
+  }
+})();
+</script>
+<style>
+/*
+ *  Start with the steps being hidden
+ */
+
+#Step1, #Step2, #Step3, #Step4, #Step5 {
+  visibility: hidden;
+}
+
+h1 {
+  background: #CCCCCC;
+  padding: .2em 1em;
+  border-top: 3px solid #666666;
+  border-bottom: 3px solid #999999;
+}
+</style>
+</head>
+<body>
+
+<h1>Magic: Read your mind</h1>
+
+<blockquote>
+<p>
+Howdy! I'm magician Zhengyao Wu. <br/>
+Please pick a letter from A to Z in your mind, then answer just five questions.<br/>
+Click 'Start' to start, <br/>
+click 'Yes', if your answer is yes, <br/>
+click 'No', if your answer is no, <br/>
+click 'Restart', if you misclicked a butten.
+
+<h2>
+\begin{align}
+ 
+    &\cssId{Step1}{\text{Is it in }\{A,C,E,G,I,K,M,O,Q,S,U,W,Y\}?}\\
+    &\cssId{Step2}{\text{Is it in }\{B,C,F,G,J,K,N,O,R,S,V,W,Z\}?}\\
+    &\cssId{Step3}{\text{Is it in }\{D,E,F,G,L,M,N,O,T,U,V,W\}?}\\
+    &\cssId{Step4}{\text{Is it in }\{H,I,J,K,L,M,N,O,X,Y,Z\}?}\\
+    &\cssId{Step5}{\text{Is it in }\{P,Q,R,S,T,U,V,W,X,Y,Z\}?}\\
+\end{align}
+</h2>
+
+</p>
+
+<p id="result">I will show your letter here immediately after you answer my questions.</p>
+<p id="result2"> </p>
+
+<input type="button" onclick="Start()" value="Start" id="start" disabled="false" />
+<input type="button" onclick="StepYes()" value="Yes" id="stepyes" disabled="true" />
+<input type="button" onclick="StepNo()" value="No" id="stepno" disabled="true" />
+<input type="button" onclick="ResetSteps()" value="Restart" id="reset" disabled="true" />
+
+</blockquote>
+Thanks to MathJax. </br>
+To see how the magic works, try to "view page source". 
+</body>
+</html>

@@ -30,7 +30,9 @@ a:active  { color: #ccc }
 .header .menu {
 	position:absolute;
 	top:24px;
-	left:160px;
+	left: 0;
+  	right: 0;
+  	margin: 0 auto;
 }
 .header .menu li {
 	font-size:18px;

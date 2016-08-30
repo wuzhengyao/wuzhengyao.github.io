@@ -30,6 +30,7 @@ a:active  { color: #ccc }
 .header .menu {
 	position:absolute;
 	top:24px;
+	text-align: center
   	/*right: 10%;*/
 }
 .header .menu li {
